@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proyecto NoSQL</title>
+     <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="css/estilos.css">
+   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="cabecera">
+        <h1>Proyecto NoSQL</h1>
+        <h2>Presentado por: Miguel Angel, Daniel, Luis y Ricard</h2>
+    </div> <!-- Fin de cabecera -->
+   
+     <div class="lista">
+      <div class="dentrolista">  
+            <form action="post">
+            <h2> Nuevo usuario</h2>
+                <fieldset>
+                   <legend>Introduzca sus datos</legend>
+                    <table>
+                        <tr>
+                          <th><label for="texto1">Nombre: </label></th>
+                          <th><input id="texto1" type=”text” maxlength="20" size="20" name="nombre"></th>
+                        </tr>
+                          <th><label for="texto2">Apellidos:</label></th>    
+                          <th> <input id="texto2" type=”text” maxlength="20" size="20" name="apel"></th>
+                        <tr>
+                          <th><label for="texto3">E-mail:</label></th>
+                          <th><input id="texto3" type=”text” maxlength="20" size="20" name="email"> </th>
+                       </tr>
+                    </table>                   
+                      
+                </fieldset>
+                <fieldset>
+                   <legend>Active la casilla para más datos</legend>
+                    <table>
+                        <tr>
+                          <th><input type="checkbox" name="sexo" value="hombre" checked><label for="texto1">Sexo: </label></th>
+                          <th><input id="texto4" type=”text” maxlength="20" size="20" name="sexo"></th>
+                        </tr>
+                         <th><input type="checkbox" name="nacionalidad" value="spain"><label for="texto1">Nacionalidad: </label></th>
+                          <th><input id="texto5" type=”text” maxlength="20" size="20" name="nacionalidad"></th>
+                        <tr>
+                         <th><input type="checkbox" name="estciv" value="soltero"><label for="texto1">Estado civil: </label></th>
+                          <th><input id="texto6" type=”text” maxlength="20" size="20" name="estciv"></th>
+                       </tr>
+                    </table>                   
+                      
+                </fieldset>
+                
+                
+            </form>   
+       </div> <!-- div final dentrolista -->
+    </div> <!-- Fin de lista -->
+    <div class="nuevo"><div class="dentronuevo">
+        <fieldset><legend>Crear nuevo usuario</legend>
+        <p>Pulse para guardar sus nuevos datos.</p>
+        <div class="botonguardar">
+        <button type="guardar">Guardar datos</button></div>
+        </fieldset>
+    </div></div> <!--Final de nuevo -->
+    </div> <!-- Fin de contenedor -->
+</body>
+</html>
