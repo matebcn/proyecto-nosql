@@ -33,7 +33,7 @@ public class Programa {
 				staff.alta();
 				break;
 			case 3:
-				System.out.println("actualizar");
+				staff.edita();
 				break;
 			case 4:
 				staff.baja();

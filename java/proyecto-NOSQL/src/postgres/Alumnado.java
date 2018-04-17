@@ -11,6 +11,7 @@ public class Alumnado {
 	static final String URL = "jdbc:postgresql://localhost:5432/proyectoblanco";
 	static final String USER = "blanco";
 	static final String PWD = "blanco";
+	static final String TABLA = "alumnos";
 	
 	Connection conn;
 	
@@ -45,9 +46,9 @@ public class Alumnado {
 				st = conn.createStatement();
 				ResultSet rs;
 				try {
-					rs = st.executeQuery("SELECT * FROM usuarios");
+					rs = st.executeQuery("SELECT * FROM "+TABLA);
 					while ( rs.next() ) {
-						retorno += rs.getInt("id")+" "+rs.getString("nombre")+"\n";
+						retorno += rs.getInt("id")+" "+rs.getString("nombre")+" "+rs.getString("apellido")+"\n";
 					}
 					rs.close();
 					st.close();
@@ -68,7 +69,7 @@ public class Alumnado {
 			Statement st;
 			try {
 				st = conn.createStatement();
-					st.executeUpdate("DELETE FROM usuarios WHERE id="+id);
+					st.executeUpdate("DELETE FROM "+TABLA+" WHERE id="+id);
 					st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -77,16 +78,63 @@ public class Alumnado {
 	}
 
 	public void insertar(String campos, String valores) {
+		
 		if (conn != null) {
 			Statement st;
 			try {
+				
 				st = conn.createStatement();
-					st.executeUpdate("INSERT INTO usuarios ("+campos+") VALUES ("+valores+")");
-					st.close();
+				st.executeUpdate("INSERT INTO "+TABLA+" ("+campos+") VALUES ("+valores+")");
+				
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void actualizar(String actualizar,int id) {
+		
+		if (conn != null) {
+			Statement st;
+			try {
+				
+				st = conn.createStatement();
+				st.executeUpdate("UPDATE "+TABLA+" SET "+actualizar+" WHERE id="+id);
+				
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public String[] recuperar(int id) {
+		
+		String[] retorno = new String[5];
+		if (conn != null) {
+			Statement st;
+			try {
+				ResultSet rs;
+				st = conn.createStatement();
+				rs = st.executeQuery("SELECT * FROM "+TABLA+" WHERE id="+id);
+				
+				while (rs.next()) {
+					// mejor MAP
+					retorno[0] = rs.getString("nombre");
+					retorno[1] = rs.getString("apellido");
+					retorno[2] = rs.getString("mail");
+					retorno[3] = rs.getString("caracteristicas");
+				}
+				
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return retorno;
 	}
 
 }
