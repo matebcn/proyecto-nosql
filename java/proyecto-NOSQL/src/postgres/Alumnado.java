@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import proyectonosql.Alumno;
+
 public class Alumnado {
 	static final String DRIVER = "org.postgresql.Driver";
 	static final String URL = "jdbc:postgresql://localhost:5432/proyectoblanco";
@@ -38,7 +40,8 @@ public class Alumnado {
 		}
 	}
 	
-	public String listado(){
+	public String listado_OLD(){
+		// primeras pruebas
 		String retorno = "";
 		if (conn != null) {
 			Statement st;
@@ -64,6 +67,36 @@ public class Alumnado {
 		return retorno;
 	}
 
+	public Alumno[] listado(){
+		Alumno[] retorno = new Alumno[100];
+		
+		if (conn != null) {
+			Statement st;
+			try {
+				st = conn.createStatement();
+				ResultSet rs;
+				try {
+					rs = st.executeQuery("SELECT id FROM "+TABLA);
+					
+					int contador = 0;
+					while ( rs.next() ) {
+						int id = rs.getInt("id");
+						retorno[contador++] = new Alumno(id);
+					}
+					rs.close();
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return retorno;
+	}
+	
 	public void borrar(int id) {
 		if (conn != null) {
 			Statement st;

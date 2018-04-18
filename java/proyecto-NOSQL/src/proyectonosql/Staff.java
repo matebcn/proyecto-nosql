@@ -1,5 +1,11 @@
 package proyectonosql;
 
+import java.util.Map;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import utils.Utils;
 
 public class Staff {
@@ -7,12 +13,19 @@ public class Staff {
 	public void listado() {
 		Alumnos alumnos = new Alumnos();
 		separadorON("Listado de alumnos");
-		System.out.println(alumnos.listado());
+		Alumno[] detalleAlumnos = alumnos.listado();
+		for (Alumno alumno : detalleAlumnos) {
+			if (alumno != null && alumno.id != 0) {
+				System.out.println("["+alumno.id+"] "+alumno.nombre+" "+alumno.apellido);
+			}
+		}
 		separadorOFF();
 	}
 	
 	public void alta() {
 		Utils util = new Utils();
+		Alumno alumno = new Alumno();
+		
 		String nombre = "";
 		String apellido = "";
 		String email = "";
@@ -42,13 +55,49 @@ public class Staff {
 				
 				// guardar en MAP
 				System.out.println(nomAtributo + " " + valorAtributo);
+				alumno.setAtributo(nomAtributo,valorAtributo);
+				valorAtributo = "";
 			}
 		} while (!nomAtributo.isEmpty());
 		
 		// guardar alumno
-		//Alumno alumno = new Alumno(nombre,apellido,email);
-		//alumno.guardar();
+		alumno.nombre = nombre;
+		alumno.apellido = apellido;
+		alumno.email = email;
+		alumno.guardar();
 		separadorOFF();
+		
+	}
+	
+	public void detalle() {
+		Utils util = new Utils();
+		separadorON("Detalle de alumno");
+		int id = Integer.parseInt(util.capturaTeclado("Indica el ID del alumno a detallar:"));
+		if (id > 0) {
+			Alumno alumno = new Alumno(id);
+			System.out.println(alumno);
+		}
+		separadorOFF();
+	}
+	
+	public void jsonString2map() {
+		
+		String atributos = "{ \"ojos\": \"azules\",\"pelo\": \"rubio\"}";
+		
+		JSONParser parser = new JSONParser();
+		JSONObject jSonObj = new JSONObject();
+		
+		try {
+			jSonObj = (JSONObject) parser.parse(atributos);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for (Object obj : jSonObj.keySet() ) {
+			String clave = (String) obj;
+			String valor = (String) jSonObj.get(clave);
+			System.out.println(clave + " - " + valor);
+		}
 		
 	}
 	
