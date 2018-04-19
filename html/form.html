@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Proyecto NoSQL</title>
-     <link rel="stylesheet" href="normalize.css">
+    <!--link rel="stylesheet" href="normalize.css"-->
     <link rel="stylesheet" href="css/estilos.css">
-   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body>
     <div class="contenedor">
@@ -22,14 +22,14 @@
                    <legend>Introduzca sus datos</legend>
                     <table>
                         <tr>
-                          <th><label for="texto1">Nombre: </label></th>
-                          <th><input id="texto1" type=”text” maxlength="20" size="20" name="nombre"></th>
+                          <th><label for="input1">Nombre: </label></th>
+                          <th><input id="input1" type="text" maxlength="20" size="20" name="nombre"></th>
                         </tr>
-                          <th><label for="texto2">Apellidos:</label></th>    
-                          <th> <input id="texto2" type=”text” maxlength="20" size="20" name="apel"></th>
+                          <th><label for="input2">Apellidos:</label></th>    
+                          <th> <input id="input2" type="text" maxlength="20" size="20" name="apel"></th>
                         <tr>
-                          <th><label for="texto3">E-mail:</label></th>
-                          <th><input id="texto3" type=”text” maxlength="20" size="20" name="email"> </th>
+                          <th><label for="input3">E-mail:</label></th>
+                          <th><input id="input3" type="text" maxlength="20" size="20" name="email"> </th>
                        </tr>
                     </table>                   
                       
@@ -38,14 +38,23 @@
                    <legend>Active la casilla para más datos</legend>
                     <table>
                         <tr>
-                          <th><input type="checkbox" name="sexo" value="hombre" checked><label for="texto1">Sexo: </label></th>
-                          <th><input id="texto4" type=”text” maxlength="20" size="20" name="sexo"></th>
+							<th><input id="check1" type="checkbox" name="check1" value="1" class="js-check"><label for="texto1">Sexo: </label></th>
+							<th>
+								<input id="texto1" type="text" maxlength="20" size="20" name="valor1" class="js-input">
+								<input id="hidden1" type="hidden" name="clave1" value="sexo">
+							</th>
                         </tr>
-                         <th><input type="checkbox" name="nacionalidad" value="spain"><label for="texto1">Nacionalidad: </label></th>
-                          <th><input id="texto5" type=”text” maxlength="20" size="20" name="nacionalidad"></th>
+							<th><input id="check2" type="checkbox" name="check2" value="2" class="js-check"><label for="texto2">Nacionalidad: </label></th>
+							<th>
+								<input id="texto2" type="text" maxlength="20" size="20" name="valor2"  class="js-input">
+								<input id="hidden2" type="hidden" name="clave2" value="nacionalidad">
+							</th>
                         <tr>
-                         <th><input type="checkbox" name="estciv" value="soltero"><label for="texto1">Estado civil: </label></th>
-                          <th><input id="texto6" type=”text” maxlength="20" size="20" name="estciv"></th>
+							<th><input id="check3" type="checkbox" name="check3" value="3" class="js-check"><label for="texto3">Estado civil: </label></th>
+							<th>
+								<input id="texto3" type="text" maxlength="20" size="20" name="valor3" class="js-input">
+								<input id="hidden3" type="hidden" name="clave3" value="estado-civil">
+							</th>
                        </tr>
                     </table>                   
                       
@@ -63,5 +72,6 @@
         </fieldset>
     </div></div> <!--Final de nuevo -->
     </div> <!-- Fin de contenedor -->
+    <script src="js/myscript.js"></script>
 </body>
 </html>
