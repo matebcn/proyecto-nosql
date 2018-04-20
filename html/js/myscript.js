@@ -21,16 +21,29 @@ function capturaEventoClick(e) {
 
 function desactivaCamposInput() {
 	//var elementos = document.querySelectorAll("input.js-input");
-	var elementos = document.querySelectorAll("input.js-input");
+	//var elementos = document.querySelectorAll("input[type='text'].js-input");
+        var elementos = document.querySelectorAll("input.js-input");
 	
 	for(var x = 0; x < elementos.length; x++) {
-		elementos[x].disabled = true;
+
+            if (elementos[x].name!='clave') {
+                // campos input.text
+                if (elementos[x].value=='') {
+                    elementos[x].disabled = true;
+                    var idTexto= elementos[x].id;
+                    var idHidden = idTexto.replace("texto","hidden");
+                    document.getElementById(idHidden).disabled=true;
+                }
+            } else {
+                
+            }
+            
 	}
 	
-	elementos = document.querySelectorAll("input[type='hidden']");
+/*	elementos = document.querySelectorAll("input[type='hidden'].js-input");
 	for(var x = 0; x < elementos.length; x++) {
 		elementos[x].disabled = true;
-	}
+	}   */
 }
 
 function asignarEventoClickcamposCheck() {

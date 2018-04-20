@@ -21,4 +21,12 @@ public class Alumnos {
 		return alumnos;
 		
 	}
+	
+	public Alumno[] buscarAtributo(String campo, String valor) {
+		Alumnado alumnosDB = new Alumnado();
+		alumnosDB.conecta();
+		Alumno[] alumnos = alumnosDB.buscar(campo,valor);
+		alumnosDB.desconecta();
+		return alumnos;
+	}
 }

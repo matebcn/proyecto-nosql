@@ -69,8 +69,13 @@ public class Alumno {
 		return this.atributos;
 	}
 	
-	private String map2string() {
+	public String map2string() {
 		String retorno = "";
+		
+		for (Map.Entry<String,String> tupla:this.atributos.entrySet() ) {
+			retorno+="· "+tupla.getKey()+": "+tupla.getValue()+"\n";
+		}		
+		
 		return retorno;
 	}
 	

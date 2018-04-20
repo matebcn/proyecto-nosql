@@ -19,11 +19,11 @@ public class Programa {
 				System.out.println("3. Actualizar Alumno");
 				System.out.println("4. Borrar Alumno");
 				System.out.println("5. Detalle Alumno");
-				System.out.println("6. testing");
+				System.out.println("6. Búsqueda");
 				System.out.println("");
 				System.out.println("0. Finalizar el programa");
 				System.out.println("");
-				System.out.print("Escoge una opción (1-5,0):");
+				System.out.print("Escoge una opción (1-6,0):");
 				opcionMenu = Integer.parseInt(util.capturaTeclado("")); 
 			} while (opcionMenu < 0 || opcionMenu > 6);
 			
@@ -44,6 +44,9 @@ public class Programa {
 				staff.detalle();
 				break;
 			case 6:
+				staff.busca();
+				break;		
+			case 7:
 				staff.jsonString2map();
 				break;			
 			case 0:

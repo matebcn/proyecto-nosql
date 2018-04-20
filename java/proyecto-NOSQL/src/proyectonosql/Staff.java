@@ -22,6 +22,28 @@ public class Staff {
 		separadorOFF();
 	}
 	
+	public void busca() {
+		Utils util = new Utils();
+		Alumnos alumnos = new Alumnos();
+		String valor = new String();
+		String campo = new String();
+
+		separadorON("Búsqueda de alumnos por atributo");
+		while (campo.isEmpty()) {
+			campo = util.capturaTeclado("Campo:");
+		}
+		while (valor.isEmpty()) {
+			valor = util.capturaTeclado("Valor:");
+		}
+		Alumno[] detalleAlumnos = alumnos.buscarAtributo(campo,valor);
+		for (Alumno alumno : detalleAlumnos) {
+			if (alumno != null && alumno.id != 0) {
+				System.out.println("["+alumno.id+"] "+alumno.nombre+" "+alumno.apellido);
+			}
+		}
+		separadorOFF();
+	}
+	
 	public void alta() {
 		Utils util = new Utils();
 		Alumno alumno = new Alumno();
@@ -53,8 +75,6 @@ public class Staff {
 					valorAtributo = util.capturaTeclado("Valor atributo:");
 				}
 				
-				// guardar en MAP
-				System.out.println(nomAtributo + " " + valorAtributo);
 				alumno.setAtributo(nomAtributo,valorAtributo);
 				valorAtributo = "";
 			}
@@ -145,6 +165,25 @@ public class Staff {
 				newEmail = util.capturaTeclado("Email ["+email+"]:");
 			}
 			alumno.email = newEmail;
+			
+			String nomAtributo = "";
+			String valorAtributo = "";
+			
+			System.out.println("Atributos existentes:");
+			System.out.println(alumno.map2string());
+			
+			do {
+				nomAtributo = util.capturaTeclado("Nombre atributo (vacío acaba) :");
+			
+				if (!nomAtributo.isEmpty()) {
+					while (valorAtributo.isEmpty()) {
+						valorAtributo = util.capturaTeclado("Valor atributo:");
+					}
+					
+					alumno.setAtributo(nomAtributo,valorAtributo);
+					valorAtributo = "";
+				}
+			} while (!nomAtributo.isEmpty());
 			
 			alumno.guardar();
 			

@@ -9,6 +9,9 @@ import java.sql.Statement;
 import proyectonosql.Alumno;
 
 public class Alumnado {
+	private static final int REGISTROS = 100;
+	private static final int CAMPOS = 5;
+	
 	static final String DRIVER = "org.postgresql.Driver";
 	static final String URL = "jdbc:postgresql://localhost:5432/proyectoblanco";
 	static final String USER = "blanco";
@@ -67,8 +70,38 @@ public class Alumnado {
 		return retorno;
 	}
 
+	public Alumno[] buscar(String campo, String valor){
+		Alumno[] retorno = new Alumno[REGISTROS];		// no es la manera más correcta
+		
+		if (conn != null) {
+			Statement st;
+			try {
+				st = conn.createStatement();
+				ResultSet rs;
+				try {
+					rs = st.executeQuery("SELECT id FROM "+TABLA+ " WHERE caracteristicas->>'"+campo+"'='"+valor+"'");
+					
+					int contador = 0;
+					while ( rs.next() ) {
+						int id = rs.getInt("id");
+						retorno[contador++] = new Alumno(id);
+					}
+					rs.close();
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return retorno;
+	}
+	
 	public Alumno[] listado(){
-		Alumno[] retorno = new Alumno[100];
+		Alumno[] retorno = new Alumno[REGISTROS];
 		
 		if (conn != null) {
 			Statement st;
@@ -144,13 +177,13 @@ public class Alumnado {
 	
 	public String[] recuperar(int id) {
 		
-		String[] retorno = new String[5];
+		String[] retorno = new String[CAMPOS];
 		if (conn != null) {
 			Statement st;
 			try {
 				ResultSet rs;
 				st = conn.createStatement();
-				rs = st.executeQuery("SELECT * FROM "+TABLA+" WHERE id="+id);
+				rs = st.executeQuery("SELECT nombre,apellido,mail,caracteristicas FROM "+TABLA+" WHERE id="+id);
 				
 				while (rs.next()) {
 					// mejor MAP
