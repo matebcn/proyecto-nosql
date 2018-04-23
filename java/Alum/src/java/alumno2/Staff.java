@@ -7,13 +7,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import alumno2.Utils;
+import java.util.ArrayList;
 
 public class Staff {
 
     public void listado() {
         Alumnos alumnos = new Alumnos();
         separadorON("Listado de alumnos");
-        Alumno[] detalleAlumnos = alumnos.listado();
+        ArrayList<Alumno> detalleAlumnos = alumnos.listado();
         for (Alumno alumno : detalleAlumnos) {
             if (alumno != null && alumno.id != 0) {
                 System.out.println("[" + alumno.id + "] " + alumno.nombre + " " + alumno.apellido);

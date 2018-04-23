@@ -6,9 +6,10 @@
     <head>                                                                                                 
         <meta charset="UTF-8">                                                                             
         <title>Proyecto NoSQL</title>                                                                      
+        <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel="stylesheet" href="css/normalize.css">                                                      
         <link rel="stylesheet" href="css/estilos.css">                                                     
-        <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">                      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">                      
     </head>
     <body>
         <div class="contenedor">                                                                       

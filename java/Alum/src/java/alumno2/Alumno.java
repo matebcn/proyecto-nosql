@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 //import org.json.simple.JSONObject;
 //import org.json.simple.parser.JSONParser;
 import alumno2.Alumnado;
+import java.util.ArrayList;
 
 public class Alumno {
 
@@ -112,13 +113,14 @@ public class Alumno {
     public void cargar() {
         Alumnado alumnoDB = new Alumnado();
         alumnoDB.conecta();
-        String[] sAlumno = alumnoDB.recuperar(this.id);
+        Map<String, String> sAlumno = alumnoDB.recuperar(this.id);
+        //Map<String, String> map = new HashMap<String, String>();
 
         // mejor MAP ?
-        this.nombre = sAlumno[0];
-        this.apellido = sAlumno[1];
-        this.email = sAlumno[2];
-        String caracteristicas = sAlumno[3];
+        this.nombre = sAlumno.get("nombre");
+        this.apellido = sAlumno.get("apellido");
+        this.email = sAlumno.get("email");
+        String caracteristicas = sAlumno.get("caracteristicas");
         //caracteristicas = caracteristicas.replaceAll("\"", "\\\\\"");
         //caracteristicas = caracteristicas.replaceAll("\"", "\\\"");
         //caracteristicas = caracteristicas.replaceAll("\"", Matcher.quoteReplacement("\\\""));

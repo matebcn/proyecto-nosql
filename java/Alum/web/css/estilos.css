@@ -2,6 +2,8 @@ body {
     font-family: 'Raleway', sans-serif;
     background-image: url(powerpoint-azul-2.jpg);
     width: 90%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 h1 {
     text-align: center; 

@@ -1,6 +1,7 @@
 package alumno2;
 
 import alumno2.Alumnado;
+import java.util.ArrayList;
 
 public class Alumnos {
 
@@ -13,10 +14,10 @@ public class Alumnos {
 
     }
 
-    public Alumno[] listado() {
+    public ArrayList<Alumno> listado() {
         Alumnado alumnosDB = new Alumnado();
         alumnosDB.conecta();
-        Alumno[] alumnos = alumnosDB.listado();
+        ArrayList<Alumno> alumnos = alumnosDB.listado();
         alumnosDB.desconecta();
         return alumnos;
     }

@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import alumno2.Alumno;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Alumnado {
 
@@ -54,8 +57,8 @@ public class Alumnado {
         return retorno;
     }
 
-    public Alumno[] listado() {
-        Alumno[] retorno = new Alumno[100];
+    public ArrayList<Alumno> listado() {
+        ArrayList<Alumno> returnList = new ArrayList<Alumno>();
 
         if (conn != null) {
             try (Statement st = conn.createStatement();
@@ -63,13 +66,13 @@ public class Alumnado {
                 int contador = 0;
                 while (rs.next()) {
                     int id = rs.getInt("id");
-                    retorno[contador++] = new Alumno(id);
+                    returnList.add(new Alumno(id));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return retorno;
+        return returnList;
     }
 
     public void borrar(int id) {
@@ -103,18 +106,18 @@ public class Alumnado {
         }
     }
 
-    public String[] recuperar(int id) {
+    public Map<String,String> recuperar(int id) {
 
-        String[] retorno = new String[5];
+        Map<String,String> retorno = new HashMap<String,String>();
         if (conn != null) {
             try (Statement st = conn.createStatement(); 
                     ResultSet rs = st.executeQuery("SELECT * FROM " + TABLA + " WHERE id=" + id)) {
                 while (rs.next()) {
                     // mejor MAP
-                    retorno[0] = rs.getString("nombre");
-                    retorno[1] = rs.getString("apellido");
-                    retorno[2] = rs.getString("mail");
-                    retorno[3] = rs.getString("caracteristicas");
+                    retorno.put("nombre",rs.getString("nombre"));
+                    retorno.put("apellido",rs.getString("apellido"));
+                    retorno.put("mail",rs.getString("mail"));
+                    retorno.put("caracteristicas",rs.getString("caracteristicas"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
