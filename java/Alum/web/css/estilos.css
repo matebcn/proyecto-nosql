@@ -1,0 +1,83 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-image: url(powerpoint-azul-2.jpg);
+    width: 90%;
+}
+h1 {
+    text-align: center; 
+    font-family: 'Raleway', sans-serif;
+    font-size: 2em;
+    color: #2d3a9f;
+
+}
+.sql {
+    display:inline;
+    color: cadetblue;
+}
+h2 {
+     font-size: 1em; 
+     margin-left: 15px;
+}
+table, th, td{
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: 10px;
+    text-align: left;
+    
+}
+.iconos {
+    text-align: center;
+
+}
+.contenedor {
+    
+    justify-content: space-around;
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 5px;
+    padding: 1%;
+    margin: 0%;
+}
+
+.contenedor > div {
+  border: 2px solid #909090;
+  border-radius: 12px;
+  font-size: 0.9em;
+}    
+.cabecera {
+    background: white;
+    /*text-shadow: 2px 2px 5px #040915;*/
+   
+}
+.dentrocabecera {
+    padding: 0.2%;
+    /*background-image: url(Nosql.gif);*/
+    background-size: cover;
+    display: grid;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    
+}
+.lista {
+    padding: 2%;
+    background-color: rgba(115, 127, 219, 0.83);
+}
+
+
+
+.celdas {
+    background: #2d3a9f;
+    border-collapse: collapse;
+    color: white;
+}
+.nuevo > .dentronuevo {
+    padding: 2%;
+    background-color: rgba(115, 127, 219, 0.62);
+}
+.boton {
+    font-size: 14px;
+    
+}
+.botoncrear, .botonguardar {
+    text-align: center;
+}
