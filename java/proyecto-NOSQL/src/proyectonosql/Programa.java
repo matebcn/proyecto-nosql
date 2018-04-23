@@ -10,6 +10,7 @@ public class Programa {
 		Utils util = new Utils();
 		String teclado;
 		boolean salir = false;
+		String opcionStringMenu = new String();
 		int opcionMenu;
 		
 		do {	/* bucle principal programa */
@@ -23,8 +24,13 @@ public class Programa {
 				System.out.println("");
 				System.out.println("0. Finalizar el programa");
 				System.out.println("");
-				System.out.print("Escoge una opción (1-6,0):");
-				opcionMenu = Integer.parseInt(util.capturaTeclado("")); 
+				opcionStringMenu = util.capturaTeclado("Escoge una opción (1-6,0):");
+				if (opcionStringMenu.isEmpty()) {
+					opcionMenu=-1;
+				} else {
+					opcionMenu = Integer.parseInt(opcionStringMenu);
+				}
+				 
 			} while (opcionMenu < 0 || opcionMenu > 6);
 			
 			switch (opcionMenu) {

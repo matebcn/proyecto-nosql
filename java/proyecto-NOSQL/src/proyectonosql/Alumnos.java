@@ -1,31 +1,24 @@
 package proyectonosql;
 
+import java.util.ArrayList;
+
 import postgres.Alumnado;
 
 public class Alumnos {
 
-	public String listado_OLD() {
+	public ArrayList<Alumno> listado() {
 		Alumnado alumnosDB = new Alumnado();
 		alumnosDB.conecta();
-		String alumnos = alumnosDB.listado_OLD();
+		ArrayList<Alumno> alumnos = alumnosDB.listado();
 		alumnosDB.desconecta();
 		return alumnos;
 		
 	}
 	
-	public Alumno[] listado() {
+	public ArrayList<Alumno> buscarAtributo(String campo, String valor) {
 		Alumnado alumnosDB = new Alumnado();
 		alumnosDB.conecta();
-		Alumno[] alumnos = alumnosDB.listado();
-		alumnosDB.desconecta();
-		return alumnos;
-		
-	}
-	
-	public Alumno[] buscarAtributo(String campo, String valor) {
-		Alumnado alumnosDB = new Alumnado();
-		alumnosDB.conecta();
-		Alumno[] alumnos = alumnosDB.buscar(campo,valor);
+		ArrayList<Alumno> alumnos = alumnosDB.buscar(campo,valor);
 		alumnosDB.desconecta();
 		return alumnos;
 	}

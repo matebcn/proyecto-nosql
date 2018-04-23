@@ -5,17 +5,23 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import proyectonosql.Alumno;
 
 public class Alumnado {
-	private static final int REGISTROS = 100;
+	//private static final int REGISTROS = 100;
 	private static final int CAMPOS = 5;
 	
 	static final String DRIVER = "org.postgresql.Driver";
 	static final String URL = "jdbc:postgresql://localhost:5432/proyectoblanco";
 	static final String USER = "blanco";
 	static final String PWD = "blanco";
+//	static final String URL = "jdbc:postgresql://192.168.40.156:5432/Alumnos";
+//	static final String USER = "postgres";
+//	static final String PWD = "toor";
 	static final String TABLA = "alumnos";
 	
 	Connection conn;
@@ -43,35 +49,9 @@ public class Alumnado {
 		}
 	}
 	
-	public String listado_OLD(){
-		// primeras pruebas
-		String retorno = "";
-		if (conn != null) {
-			Statement st;
-			try {
-				st = conn.createStatement();
-				ResultSet rs;
-				try {
-					rs = st.executeQuery("SELECT * FROM "+TABLA);
-					while ( rs.next() ) {
-						retorno += rs.getInt("id")+" "+rs.getString("nombre")+" "+rs.getString("apellido")+"\n";
-					}
-					rs.close();
-					st.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return retorno;
-	}
-
-	public Alumno[] buscar(String campo, String valor){
-		Alumno[] retorno = new Alumno[REGISTROS];		// no es la manera más correcta
+	public ArrayList<Alumno> buscar(String campo, String valor){
+		ArrayList<Alumno> retorno = new ArrayList<Alumno>();
 		
 		if (conn != null) {
 			Statement st;
@@ -84,7 +64,7 @@ public class Alumnado {
 					int contador = 0;
 					while ( rs.next() ) {
 						int id = rs.getInt("id");
-						retorno[contador++] = new Alumno(id);
+						retorno.add(new Alumno(id));
 					}
 					rs.close();
 					st.close();
@@ -100,42 +80,31 @@ public class Alumnado {
 		return retorno;
 	}
 	
-	public Alumno[] listado(){
-		Alumno[] retorno = new Alumno[REGISTROS];
-		
-		if (conn != null) {
-			Statement st;
-			try {
-				st = conn.createStatement();
-				ResultSet rs;
-				try {
-					rs = st.executeQuery("SELECT id FROM "+TABLA);
-					
-					int contador = 0;
-					while ( rs.next() ) {
-						int id = rs.getInt("id");
-						retorno[contador++] = new Alumno(id);
-					}
-					rs.close();
-					st.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+	
+    public ArrayList<Alumno> listado() {
+        ArrayList<Alumno> returnList = new ArrayList<Alumno>();
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return retorno;
-	}
+        if (conn != null) {
+            try (Statement st = conn.createStatement();
+                    ResultSet rs = st.executeQuery("SELECT id FROM " + TABLA + " WHERE active > 0")) {
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    returnList.add(new Alumno(id));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return returnList;
+    }
 	
 	public void borrar(int id) {
 		if (conn != null) {
 			Statement st;
 			try {
 				st = conn.createStatement();
-					st.executeUpdate("DELETE FROM "+TABLA+" WHERE id="+id);
+					//st.executeUpdate("DELETE FROM "+TABLA+" WHERE id="+id);
+					st.executeUpdate("UPDATE "+TABLA+" SET active=0 WHERE id="+id);
 					st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -175,9 +144,9 @@ public class Alumnado {
 		}
 	}
 	
-	public String[] recuperar(int id) {
+	public Map<String,String> recuperar(int id) {
 		
-		String[] retorno = new String[CAMPOS];
+		Map<String,String> retorno = new HashMap<String,String>();
 		if (conn != null) {
 			Statement st;
 			try {
@@ -186,11 +155,11 @@ public class Alumnado {
 				rs = st.executeQuery("SELECT nombre,apellido,mail,caracteristicas FROM "+TABLA+" WHERE id="+id);
 				
 				while (rs.next()) {
-					// mejor MAP
-					retorno[0] = rs.getString("nombre");
-					retorno[1] = rs.getString("apellido");
-					retorno[2] = rs.getString("mail");
-					retorno[3] = rs.getString("caracteristicas");
+
+					retorno.put( "nombre", rs.getString("nombre") );
+					retorno.put( "apellido", rs.getString("apellido") );
+					retorno.put( "mail", rs.getString("mail") );
+					retorno.put( "caracteristicas", rs.getString("caracteristicas") );
 				}
 				
 				rs.close();

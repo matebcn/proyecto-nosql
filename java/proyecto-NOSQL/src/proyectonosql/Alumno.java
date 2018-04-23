@@ -118,13 +118,13 @@ public class Alumno {
 	public void cargar() {
 		Alumnado alumnoDB = new Alumnado();
 		alumnoDB.conecta();
-		String[] sAlumno = alumnoDB.recuperar(this.id);
+		Map<String,String> alumnoRecuperado = alumnoDB.recuperar(this.id);
 		
-		// mejor MAP ?
-		this.nombre = sAlumno[0];
-		this.apellido = sAlumno[1];
-		this.email = sAlumno[2];
-		String caracteristicas = sAlumno[3];
+
+		this.nombre = alumnoRecuperado.get("nombre");
+		this.apellido = alumnoRecuperado.get("apellido");
+		this.email = alumnoRecuperado.get("mail");
+		String caracteristicas = alumnoRecuperado.get("caracteristicas");
 		//caracteristicas = caracteristicas.replaceAll("\"", "\\\\\"");
 		//caracteristicas = caracteristicas.replaceAll("\"", "\\\"");
 		//caracteristicas = caracteristicas.replaceAll("\"", Matcher.quoteReplacement("\\\""));

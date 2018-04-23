@@ -1,5 +1,6 @@
 package proyectonosql;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.json.simple.JSONObject;
@@ -13,7 +14,7 @@ public class Staff {
 	public void listado() {
 		Alumnos alumnos = new Alumnos();
 		separadorON("Listado de alumnos");
-		Alumno[] detalleAlumnos = alumnos.listado();
+		ArrayList<Alumno> detalleAlumnos = alumnos.listado();
 		for (Alumno alumno : detalleAlumnos) {
 			if (alumno != null && alumno.id != 0) {
 				System.out.println("["+alumno.id+"] "+alumno.nombre+" "+alumno.apellido);
@@ -35,7 +36,7 @@ public class Staff {
 		while (valor.isEmpty()) {
 			valor = util.capturaTeclado("Valor:");
 		}
-		Alumno[] detalleAlumnos = alumnos.buscarAtributo(campo,valor);
+		ArrayList<Alumno> detalleAlumnos = alumnos.buscarAtributo(campo,valor);
 		for (Alumno alumno : detalleAlumnos) {
 			if (alumno != null && alumno.id != 0) {
 				System.out.println("["+alumno.id+"] "+alumno.nombre+" "+alumno.apellido);
