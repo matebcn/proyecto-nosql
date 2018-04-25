@@ -1,4 +1,4 @@
-https://www.compose.com/articles/faster-operations-with-the-jsonb-data-type-in-postgresql/
+--https://www.compose.com/articles/faster-operations-with-the-jsonb-data-type-in-postgresql/
 
 CREATE TABLE alumnos (  
   id serial NOT NULL,
