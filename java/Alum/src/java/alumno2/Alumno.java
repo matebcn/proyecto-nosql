@@ -119,7 +119,7 @@ public class Alumno {
         // mejor MAP ?
         this.nombre = sAlumno.get("nombre");
         this.apellido = sAlumno.get("apellido");
-        this.email = sAlumno.get("email");
+        this.email = sAlumno.get("mail");
         String caracteristicas = sAlumno.get("caracteristicas");
         //caracteristicas = caracteristicas.replaceAll("\"", "\\\\\"");
         //caracteristicas = caracteristicas.replaceAll("\"", "\\\"");

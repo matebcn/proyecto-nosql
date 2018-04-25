@@ -14,7 +14,7 @@
         <meta charset="UTF-8">                                                                             
         <title>Proyecto NoSQL</title>                                                                      
         <link rel="stylesheet" href="css/normalize.css">        
-        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="shortcut icon" href="images/favicon.ico">
         <link rel="stylesheet" href="css/estilos.css">                                                     
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">                      
     </head>

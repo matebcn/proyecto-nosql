@@ -54,7 +54,6 @@ public class Staff {
                     valorAtributo = util.capturaTeclado("Valor atributo:");
                 }
 
-                // guardar en MAP
                 System.out.println(nomAtributo + " " + valorAtributo);
                 alumno.setAtributo(nomAtributo, valorAtributo);
                 valorAtributo = "";

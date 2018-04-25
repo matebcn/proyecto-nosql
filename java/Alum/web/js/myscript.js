@@ -60,5 +60,5 @@ window.onload = function() {
 	// desactivar todos los campos input.text
 	desactivaCamposInput();
 	// asignar evento a todos los campos input.checkbox
-	asignarEventoClickcamposCheck()
-}
+	asignarEventoClickcamposCheck();
+};

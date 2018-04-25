@@ -20,7 +20,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Proyecto NoSQL</title>
-        <link rel="shortcut icon" href="images/favicon.ico" />
+        <link rel="shortcut icon" href="images/favicon.ico">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/estilos.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -48,7 +48,7 @@
                                 <th> <input id="apellidos" type="text" placeholder="Escriba sus apellidos..." size="20" name="apel" value="<%=alum.apellido%>"></th>
                                 <tr>
                                     <th><label for="texto3">E-mail:</label></th>
-                                    <th><input id="mail" type="text" placeholder="Escriba su mail..." maxlength="20" size="20" name="email" value="<%=alum.email%>"> </th>
+                                    <th><input id="mail" type="email" placeholder="Escriba su mail..." maxlength="20" size="20" name="email" value="<%=alum.email%>"> </th>
                                 </tr>
                             </table>                   
 
